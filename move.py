@@ -5,13 +5,14 @@ class Move():
     def __init__(self, position_list):
         self.position_list = position_list
 
+    # returns already selected position
     def selected_position(self):
         for position in self.position_list:
             if position.has_piece():                      
                 if position.pos_piece().is_selected():
                     return position
 
-    # unselect all selected pieces
+    # unselect all pieces
     def unselect_pieces(self):
         for pos_selected in self.position_list:
             if pos_selected.has_piece(): 
