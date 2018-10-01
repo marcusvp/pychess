@@ -4,4 +4,8 @@ class Player:
         self.playerName = name
         self.playerIP = IP
         self.color = color
+        if color == "white":
+             self.isTurn = True
+        else:
+            self.isTurn = False
     
