@@ -1,5 +1,6 @@
 import pygame
 import init_resources
+from player import Player
 from board_interface import BoardInterface
 from move import Move
 
