@@ -35,6 +35,7 @@ class Position():
 
     def select_piece(self):
         self.piece.select()
+        self.highlight_square()
 
     def unselect_piece(self):
         self.piece.unselect()
