@@ -1,2 +1,2 @@
 # pychess
-python chess game 
+python chess game based on pygame
