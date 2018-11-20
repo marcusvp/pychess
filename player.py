@@ -1,4 +1,4 @@
-class Player:
+class Player():
 
     def __init__(self, name, color, IP):
         self.playerName = name
