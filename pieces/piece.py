@@ -26,15 +26,18 @@ class Piece():
     def Y(self):
         return self.y
 
-    def is_legal(self, x, y):
+    def is_legal(self, x, y, pos_list):
+        print("generic legal")
         return True
     
-    def gen_legal_moves(self):
+    def gen_legal_moves(self, pos_list):
         self.legal_moves.clear()
         for x in range(8):
             for y in range(8):
-                if self.is_legal(x, y):
+                if self.is_legal(x, y, pos_list):
                     self.legal_moves.append(LegalPosition(x, y))
+        for position in self.legal_moves:
+            print("position " + str(position.X()), str(position.Y()))
 
     def compare_legal(self, position):
         for legal_pos in self.legal_moves:
@@ -54,9 +57,9 @@ class Piece():
     def is_selected(self):
         return self.selected
 
-    def select(self):
+    def select(self, pos_list):
         self.selected = True
-        self.gen_legal_moves()
+        self.gen_legal_moves(pos_list)
 
     def unselect(self):
         self.selected = False

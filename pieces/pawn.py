@@ -7,7 +7,7 @@ class Pawn(Piece):
         self.first_move = True
         self.was_double_step = False
 
-    def is_legal(self, x, y):
+    def is_legal(self, x, y, pos_list):
         offset = self.get_offset()
         if self.first_move:
             double_offset = offset * 2
@@ -35,5 +35,5 @@ class Pawn(Piece):
                 if self.y == legal_pos.Y() - 2 or self.y == legal_pos.Y() + 2:
                     self.was_double_step = True
                 return True        
-        print("not a legal move")
+        print("not a legal pawn move")
         return False

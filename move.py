@@ -30,7 +30,7 @@ class Move():
                             sel_position.move_piece(position)
                         else:
                             self.unselect_pieces()
-                            position.select_piece() # select piece clicked
+                            position.select_piece(self.position_list) # select piece clicked
             else:
                 if position.was_clicked(mouseX, mouseY): # finding clicked position
                     sel_position = self.selected_position() # previously clicked piece's position

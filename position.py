@@ -33,8 +33,8 @@ class Position():
     def has_piece(self):
         return self.has_Piece
 
-    def select_piece(self):
-        self.piece.select()
+    def select_piece(self, pos_list):
+        self.piece.select(pos_list)
         self.highlight_square()
 
     def unselect_piece(self):
