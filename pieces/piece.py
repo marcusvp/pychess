@@ -37,7 +37,7 @@ class Piece():
                 if self.is_legal(x, y, pos_list):
                     self.legal_moves.append(LegalPosition(x, y))
         for position in self.legal_moves:
-            print("position " + str(position.X()), str(position.Y()))
+            print("position " + str(position.X()), str(position.Y()) + " is legal for " + str(self))
 
     def compare_legal(self, position):
         for legal_pos in self.legal_moves:
