@@ -36,5 +36,7 @@ class Move():
                     sel_position = self.selected_position() # previously clicked piece's position
                     if sel_position != None:    
                         sel_position.move_piece(position)
+                        return True
+        return False
 
     
