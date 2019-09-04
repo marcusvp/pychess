@@ -1,4 +1,5 @@
 import pygame
+import flipper
 
 class Position():
     
@@ -44,7 +45,7 @@ class Position():
     def remove_piece(self):
         self.has_Piece = False
         self.piece = None
-        print("removed piece at " + str(self.x), str(self.y))
+        #print("removed piece at " + str(self.x), str(self.y))
 
     def move_piece(self, end_pos):
         if self.piece.move(end_pos):
@@ -61,6 +62,11 @@ class Position():
 
     def highlight_square(self):
         self.draw_image = self.highlighted_image
+
+    def flip(self):
+        self.x = flipper.flip_map[self.x]
+        self.y = flipper.flip_map[self.y]
+        self.rectangle = pygame.Rect(self.x * 80, self.y * 80, 80, 80)
 
     
         

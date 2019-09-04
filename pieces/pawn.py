@@ -1,4 +1,5 @@
 from pieces.piece import Piece
+import flipper
 
 class Pawn(Piece):
 
@@ -6,15 +7,15 @@ class Pawn(Piece):
         Piece.__init__(self, player, x, y, color, image)
         self.first_move = True
         self.was_double_step = False
+        self.offset = self.get_offset()
 
     def is_legal(self, x, y, pos_list):
-        offset = self.get_offset()
         if self.first_move:
-            double_offset = offset * 2
+            double_offset = self.offset * 2
             if x == self.x and y == self.y - double_offset:
                 print ("double move legal")
                 return True
-        if x == self.x and y == self.y - offset:
+        if x == self.x and y == self.y - self.offset:
             print ("pawn legal")
             return True
         else:
@@ -37,3 +38,8 @@ class Pawn(Piece):
                 return True        
         print("not a legal pawn move")
         return False
+    
+    def flip(self):
+        self.x = flipper.flip_map[self.x]
+        self.y = flipper.flip_map[self.y]
+        self.offset *= - 1

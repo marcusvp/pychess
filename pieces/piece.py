@@ -1,4 +1,5 @@
 from legal_pos import LegalPosition
+import flipper
 
 class Piece():
 
@@ -63,3 +64,7 @@ class Piece():
 
     def unselect(self):
         self.selected = False
+
+    def flip(self):
+        self.x = flipper.flip_map[self.x]
+        self.y = flipper.flip_map[self.y]
