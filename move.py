@@ -2,8 +2,10 @@ import pygame
 
 class Move():
 
-    def __init__(self, position_list):
+    def __init__(self, position_list, pieces_list, captured_pieces_list):
         self.position_list = position_list
+        self.pieces_list = pieces_list
+        self.captured_pieces_list = captured_pieces_list
 
     # returns already selected position
     def selected_position(self):
@@ -27,16 +29,20 @@ class Move():
                     else:
                         sel_position = self.selected_position()
                         if sel_position != None and position.pos_piece().pieceColor() != sel_position.pos_piece().pieceColor():
-                            sel_position.move_piece(position)
+                            temp_piece = position.pos_piece()
+                            if sel_position.capture_piece(position):
+                                self.pieces_list.remove(temp_piece)
+                                self.captured_pieces_list.append(temp_piece)
+                                return True
                         else:
                             self.unselect_pieces()
                             position.select_piece(self.position_list) # select piece clicked
             else:
                 if position.was_clicked(mouseX, mouseY): # finding clicked position
                     sel_position = self.selected_position() # previously clicked piece's position
-                    if sel_position != None:    
-                        sel_position.move_piece(position)
-                        return True
+                    if sel_position != None: 
+                        if sel_position.move_piece(position):
+                            return True
         return False
 
     

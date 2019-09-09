@@ -26,6 +26,7 @@ class Position():
         return self.piece
 
     def set_piece(self, piece):
+        self.remove_piece()
         self.piece = piece
         self.has_Piece = True
         self.piece.unselect()
@@ -45,14 +46,26 @@ class Position():
     def remove_piece(self):
         self.has_Piece = False
         self.piece = None
+        self.draw_image = self.tile_image
         #print("removed piece at " + str(self.x), str(self.y))
 
     def move_piece(self, end_pos):
         if self.piece.move(end_pos):
             self.remove_piece()
             self.draw_image = self.tile_image
+            return True
         else:
             self.unselect_piece()
+        return False
+
+    def capture_piece(self, end_pos):
+        if self.piece.move(end_pos):
+            self.remove_piece()
+            self.draw_image = self.tile_image
+            return True
+        else:
+            self.unselect_piece()
+        return False
 
     def tile_position(self):
         return self.x * 80, self.y * 80

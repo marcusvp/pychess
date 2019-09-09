@@ -17,7 +17,7 @@ class Board():
         self.init_board()
         self.set_pieces()
         self.interface = BoardInterface(playerOne, playerTwo, self.pieces_list, self.position_list)
-        self.piece_movement = Move(self.position_list)
+        self.piece_movement = Move(self.position_list, self.pieces_list, self.captured_pieces_list)
         self.turn = "white"
         
 
@@ -28,8 +28,8 @@ class Board():
         running = True
         fps = 60
         clock = pygame.time.Clock()
+        self.flip_board()
         self.draw_board()
-        #self.flip_board()
         pygame.display.flip()
         while running:
             clock.tick(fps)
