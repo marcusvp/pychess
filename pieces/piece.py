@@ -3,23 +3,24 @@ import flipper
 
 class Piece():
 
-    def __init__(self, player, x, y, color, image):
-        self.player = player
+    def __init__(self, x, y, color, image):
         self.x = x
         self.y = y
+        self.vis_x = x
+        self.vis_y = y
         self.color = color
         self.image = image
         self.legal_moves = []
         self.selected = False
 
-    def pieceColor(self):
+    def piece_color(self):
         return self.color
 
-    def pieceImage(self):
+    def piece_image(self):
         return self.image
 
-    def drawPosition(self):
-        return self.x * 80, self.y * 80    
+    def draw_position(self):
+        return self.vis_x * 80, self.vis_y * 80    
 
     def X(self):
         return self.x
@@ -48,9 +49,12 @@ class Piece():
         return False
 
     def move(self, position):
+        print("piece tried moving ", self.X(), self.Y(), position.X(), position.Y())
         if self.compare_legal(position):
-            self.x = position.X()
-            self.y = position.Y()
+            self.x, self.y = position.X(), position.Y()
+            self.vis_x, self.vis_y = position.vis_pos()
+            #self.x = position.X()
+            #self.y = position.Y()
             position.set_piece(self)
             return True
         return False
@@ -65,6 +69,7 @@ class Piece():
     def unselect(self):
         self.selected = False
 
-    def flip(self):
-        self.x = flipper.flip_map[self.x]
-        self.y = flipper.flip_map[self.y]
+    def flip(self, position):
+        #self.x, self.y = position.X(), position.Y()
+        self.vis_x, self.vis_y = position.vis_pos()
+        position.set_piece(self)

@@ -3,9 +3,7 @@ import init_resources
 
 class BoardInterface():
 
-    def __init__(self, playerOne, playerTwo, pieces_list, tiles_list):
-        self.playerOne = playerOne
-        self.playerTwo = playerTwo
+    def __init__(self, pieces_list, tiles_list):
         self.pieces_list = pieces_list
         self.tiles_list = tiles_list
         pygame.init()
@@ -18,10 +16,12 @@ class BoardInterface():
 
     def draw_tiles(self):
         for tile in self.tiles_list:
-            tileImage = pygame.image.load(str(tile.drawImage()))
-            self.screen.blit(tileImage, (tile.tile_position()))
-            
+            tile_image = pygame.image.load(str(tile.draw_image()))
+            self.screen.blit(tile_image, (tile.tile_position()))
+    
     def draw_pieces(self):
-        for piece in self.pieces_list:
-            piece_image = pygame.image.load(str(piece.pieceImage()))
-            self.screen.blit(piece_image, (piece.drawPosition()))
+        for tile in self.tiles_list:
+            if (tile.has_piece()):
+                piece = tile.pos_piece()
+                piece_image = pygame.image.load(str(piece.piece_image()))
+                self.screen.blit(piece_image, (piece.draw_position()))

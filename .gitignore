@@ -5,3 +5,5 @@ __pycache__/*
 *.pyc
 pychess.code-workspace
 last workspace.code-workspace
+pychessworkspace.code-workspace
+.gitignore
